@@ -38,19 +38,19 @@
 # checking if daemon service file exists 
     - name: Check if the service file exists
       stat:
-        path: /etc/systemd/system/AmexAPIV1.service
+        path: /path/to/servicefile/directory
       register: service_file_stat
 
 # now using jinja template to copy the system service file, if it exist then it will skip  it
-    - name: Create amex service using Jinja2
+    - name: Create appname service using Jinja2
       template:
         src: Template-dotnet.j2
-        dest: /etc/systemd/system/AmexAPIV1.service
+        dest: /path/to/servicefile/directory
       when: not service_file_stat.stat.exists
 # this will enable and start service file also restart it
-    - name: start AmexAPIV1 API on Staging
+    - name: start appname API on Staging
       systemd:
-        name: AmexAPIV1
+        name: appname
         state: restarted
         enabled: yes
       become: yes

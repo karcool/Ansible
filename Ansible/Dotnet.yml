@@ -48,7 +48,7 @@
         dest: /path/to/servicefile/directory
       when: not service_file_stat.stat.exists
 # this will enable and start service file also restart it
-    - name: start appname API on Staging
+    - name: start appname on Staging
       systemd:
         name: appname
         state: restarted
